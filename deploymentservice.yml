@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: ekart
-  replicas: 2 # Number of replicas that will be created for this deployment
+  replicas: 1 # Number of replicas that will be created for this deployment
   template:
     metadata:
       labels:
@@ -33,4 +33,4 @@ spec:
     - protocol: "TCP"
       port: 8070 # The port that the service is running on in the cluster
       targetPort: 8070 # The port exposed by the service
-  type: LoadBalancer # type of the service.
+  type: NodePort # type of the service.

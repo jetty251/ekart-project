@@ -72,5 +72,15 @@ pipeline {
                }
             }
         }
+        stage('kubernets') {
+            steps {
+                script {
+                    withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'kube-token', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.95.162:6443') {
+                        sh 'kubectl apply -f deploymentservice.yml -n webapps'
+                        sh 'kubectl get svc -n webapps'
+                    }
+                }
+            }
+        }
     }
 }
